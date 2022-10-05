@@ -1,16 +1,15 @@
-# 这是一个示例 Python 脚本。
+from libsvm.svm import *
+from libsvm.svmutil import *
+from libsvm.commonutil import *
 
-# 按 Shift+F10 执行或将其替换为您的代码。
-# 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
+y, x = svm_read_problem('CM1_libsvm.txt')
+options = '-c 1 -b 1'  # 选择训练参数
+print("开始训练")
+model = svm_train(y, x, options)  # 训练模型
+svm_save_model('svm.model', model)  # 保存模型
 
-
-def print_hi(name):
-    # 在下面的代码行中使用断点来调试脚本。
-    print(f'Hi, {name}')  # 按 Ctrl+F8 切换断点。
-
-
-# 按间距中的绿色按钮以运行脚本。
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
+# print("开始测试")
+# yt, xt = svm_read_problem('C:/Users/hnt/Desktop/test.txt')  # 读入测试数据
+# m = svm_load_model('svm.model')  # 读取模型
+# p_label, p_acc, p_val = svm_predict(yt, xt, m, '-b 1')  # 预测
+# ACC, MSE, SCC = evaluations(yt, p_label)
